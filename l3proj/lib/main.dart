@@ -134,14 +134,29 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                backgroundColor: Colors.red,
+                child: const Icon(Icons.remove_sharp),
+                ),
+                FloatingActionButton(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                backgroundColor: Colors.green,
+                child: const Icon(Icons.add_sharp),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: reset, 
+            child: Text('Сбросить', style: TextStyle(color: Color.fromARGB(255, 242, 204, 68))))
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }

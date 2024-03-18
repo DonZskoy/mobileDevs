@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'l4proj',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
@@ -32,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String _fileContents = "";
-  int _likeCounter = 18;
+  int _likeCounter = 3741;
   bool isLiked = true;
 
   Future<void> loadAsset() async {
@@ -74,9 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               image.offsetInBytes,
               image.lengthInBytes
           ),
-        mimeType: 'image/png'
-        ),
-      ],
+          mimeType: 'image/png'
+      ),
+    ],
     );
   }
 
@@ -84,18 +84,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme
-              .of(context)
-              .colorScheme
-              .inversePrimary,
-          title: Text(widget.title),
-        ),
-        body: ListView(
+      appBar: AppBar(
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: ListView(
           children: [
             Image.asset('assets/obshaga.png'),
             Container(
-              child: Column(
+              margin: const EdgeInsets.all(9),
+              padding: const EdgeInsets.all(7),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -107,13 +109,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                      margin: const EdgeInsets.all(5.0),
-                                      child: const Text("Общежитие №20")
+                                    margin: const EdgeInsets.all(5),
+                                    child: const Text('Общежитие №20',
+                                      style:
+                                      TextStyle(fontSize: 17,
+                                      fontWeight: FontWeight.w800),)
                                   ),
                                   Container(
-                                    margin: const EdgeInsets.only(left: 5.0),
-                                    child: Text(
-                                        "Краснодар, ул. Калинина 13к20"),),
+                                    margin: const EdgeInsets.all(5),
+                                    child: Text('Краснодар, ул. Калинина 13к20',
+                                      style:
+                                        TextStyle(fontSize: 14,
+                                        fontWeight: FontWeight.w200),),)
                                 ],
                               ))),
                       Expanded(
@@ -139,23 +146,54 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Text(_likeCounter.toString()),
                     ]),
-                    Container(
-                        child: Row(
+                    Container(margin: const EdgeInsets.all(16),
+                      child: Row(
+                        children: [
+                        Expanded(
+                        child:
+                          Column(
                           children: [
-                            TextButton(
-                                onPressed: _callNumber, child: Text('Позвонить')),
-                            TextButton(
-                                onPressed: _buildRoute, child: Text('Маршрут')),
-                            TextButton(
+                            IconButton(
+                              onPressed: _callNumber,
+                              icon: Icon(
+                                Icons.call,
+                                color: Colors.green,),
+                            ),
+                            Text('ПОЗВОНИТЬ',style: TextStyle(fontSize: 14, color: Colors.green,)),
+                          ],),),
+                        Expanded(
+                        child:
+                          Column(
+                            children: [
+                            IconButton(
+                              onPressed: _buildRoute,
+                              icon: Icon(
+                                  Icons.near_me,
+                                  color: Colors.green,),
+                              ),
+                              Text('МАРШРУТ',style: TextStyle(fontSize: 14, color: Colors.green,)),
+                        ],),),
+                        Expanded(
+                        child:
+                          Column(
+                            children: [
+                            IconButton(
                               onPressed: _share,
-                              child: Text('Поделится'),
-                            )
-                          ],
-                        )),
+                              icon: Icon(
+                                Icons.share,
+                                color: Colors.green,),
+                              ),
+                              Text('ПОДЕЛИТЬСЯ',style: TextStyle(fontSize: 14, color: Colors.green,)),
+                            ],
+                          ),
+                        ),
+                      ],
+                      )),
                     Flexible(child: Text(_fileContents)),
-                  ]),
-            ),
-          ],
-        ));
+          ]),
+    ),]
+    ,
+    )
+    );
   }
 }

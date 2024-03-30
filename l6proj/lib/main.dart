@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
       title: 'l6proj',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Калькулятор площади'),
+          centerTitle: true,
+          title: const Text('Калькулятор площади',
+            style: TextStyle(
+                color: Colors.white),),
           backgroundColor: Colors.blue,
         ),
         body: const MyForm(),
@@ -34,8 +37,8 @@ class MyFormState extends State<MyForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _width = '';
-  String _height = '';
-  int _area = 0;
+  String _length = '';
+  int _area = 1;
   String text = '';
 
   @override
@@ -70,6 +73,7 @@ class MyFormState extends State<MyForm> {
 
                         child:
                         TextFormField(
+                              autofocus: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Введите длину!';
@@ -100,7 +104,7 @@ class MyFormState extends State<MyForm> {
                           if (value == null || value.isEmpty) {
                             return 'Введите ширину!';
                           }
-                          _height = value;
+                          _length = value;
                           return null;
                         },
                       ),
@@ -113,8 +117,8 @@ class MyFormState extends State<MyForm> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         setState(() {
-                          _area = int.parse(_width) * int.parse(_height);
-                          text = 'S = $_width * $_height = $_area';
+                          _area = int.parse(_width) * int.parse(_length);
+                          text = 'S = $_width * $_length = $_area';
                           }
                         );
                       }
@@ -122,7 +126,15 @@ class MyFormState extends State<MyForm> {
                     child: const Text('Вычислить'),
                 ),
               ),
-              Text(_area == null ? 'задайте параметры' : text, style: const TextStyle(fontSize: 30),)
+                Padding(padding: const EdgeInsets.only(left: 15),
+                  child:
+                    Text(_area == 0 ? 'Задайте параметры' : text,
+                      style: const TextStyle(
+                          fontSize: 30,
+                          color: Colors.lightBlue
+                      ),
+                    )
+                )
             ],
           ),
     );

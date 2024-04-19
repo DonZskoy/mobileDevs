@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:l8proj/class_photo.dart';
-import 'package:l8proj/fetch_photos.dart';
+import 'package:l8proj/PhotoGallery/class_photo.dart';
+import 'package:l8proj/PhotoGallery/fetch_photos.dart';
 import 'package:http/http.dart' as http;
 
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class NewsHomePage extends StatelessWidget {
+  const NewsHomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'l8proj',
-      home: MyHomePage(title: 'Фотогалерея'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text('Новости КубГАУ'),
       ),
       body: FutureBuilder<List<Photo>>(
         future: fetchPhotos(http.Client()),

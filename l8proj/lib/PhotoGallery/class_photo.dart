@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Photo {
   final int albumId;
   final int id;

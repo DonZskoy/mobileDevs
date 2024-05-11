@@ -8,8 +8,8 @@ class MachinePage extends StatefulWidget {
   State<MachinePage> createState() => _MachinePageState();
 }
 
-var coffe = Machine(coffeBeans: 500, milk: 150, water: 450, cash: 75);
-String text = 'dick';
+String text = '';
+var coffe = Machine(coffeBeans: 250, milk: 200, water: 460, cash: 75);
 
 class _MachinePageState extends State<MachinePage> {
   @override
@@ -27,6 +27,7 @@ class _MachinePageState extends State<MachinePage> {
                       setState(() {});
                     },
                     child: const Text('Приготовить кофе')),
+                const Padding(padding: EdgeInsets.only(top: 30)),
                 Text(text),
           ],
         )));
